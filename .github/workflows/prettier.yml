@@ -1,0 +1,25 @@
+name: Prettier Formatting
+
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - client/**
+  
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Add this line to grant write permissions
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.5
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --write **/*.{js,ts,tsx,json,md,css}
